@@ -4,6 +4,10 @@ import React from 'react';
 import TodoForm from './components/TodoComponents/TodoForm';
 import TodoList from './components/TodoComponents/TodoList';
 
+//style
+import "./components/Todo.css";
+
+
 //data
 const todoList = [
   {
@@ -34,20 +38,15 @@ constructor(){
 
 addTodo = (e, todoItem) => {
   e.preventDefault();
-  let existing = this.state.todoList.filter(
-    todo => todo.task === todoItem
-  );
-  if(existing.length === 0){
-    let newTodo = {
-      task: todoItem,
-      id: Date.now(),
-      completed: false
-    };
-
-  this.setState({
+  let newTodo = {
+    task: todoItem,
+    id: Date.now(),
+    completed: false
+  };
+    this.setState({
     todoList: [...this.state.todoList, newTodo]
   });
-  }
+  
 };
 
 clearTodo = e => {
@@ -58,6 +57,7 @@ clearTodo = e => {
 }
 
 toggleTodo = todoId => {
+  // console.log(todoId);
   this.setState({
     todoList: this.state.todoList.map(todo => {
       if (todo.id === todoId){
@@ -66,8 +66,7 @@ toggleTodo = todoId => {
       return todo;
     })
   });
-
-}
+};
 
   render() {
     return (
